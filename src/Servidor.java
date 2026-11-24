@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Locale;
 
 public class Servidor {
 
@@ -20,17 +21,29 @@ public class Servidor {
             while(true) {
                 salida.println("Intenta adivinar el número (0-100):");
 
-                int numUsr = Integer.parseInt(entrada.readLine());
 
-                if (numUsr < numeroSecreto) {
-                    salida.println("MAYOR");
-                } else if (numUsr > numeroSecreto) {
-                    salida.println("MENOR");
-                } else {
-                    salida.println("Acierto en " + intentos);
+                String entradaUsr = entrada.readLine();
+                if(entradaUsr.toLowerCase().compareTo("adios") == 0){
+                    System.out.println("Ok, hasta luego");
                     break;
                 }
-                intentos++;
+
+                try {
+                    int numUsr = Integer.parseInt(entradaUsr);
+                    if (numUsr < numeroSecreto) {
+                        salida.println("MAYOR");
+                    } else if (numUsr > numeroSecreto) {
+                        salida.println("MENOR");
+                    } else {
+                        salida.println("Acierto en " + intentos);
+                        break;
+                    }
+                    intentos++;
+                }catch (NumberFormatException e){
+                    //No lo cuenta como intento
+                    salida.println("ERR Comando no válido");
+
+                }
             }
 
             // Cerramos la conexión y el servidor.
