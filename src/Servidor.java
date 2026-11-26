@@ -1,9 +1,15 @@
 import java.io.*;
 import java.net.*;
-import java.util.Locale;
 
+/**
+ * Clase Servidor
+ */
 public class Servidor {
 
+    /**
+     * Método main que espera a recibir una conexiín de un usuario y pedirle números hasta que lo adivine
+     * @param args
+     */
     public static void main(String[] args) {
         int numeroSecreto = (int)(Math.random() * 101); // 0 to 100
         int intentos = 1;
