@@ -7,6 +7,7 @@ public class Servidor {
     public static void main(String[] args) {
         int numeroSecreto = (int)(Math.random() * 101); // 0 to 100
         int intentos = 1;
+        String entradaUsr = "";
         try {
             ServerSocket servidor = new ServerSocket(6666);
             System.out.println("Esperando conexiones...");
@@ -21,8 +22,7 @@ public class Servidor {
             while(true) {
                 salida.println("Intenta adivinar el número (0-100):");
 
-
-                String entradaUsr = entrada.readLine();
+                entradaUsr = entrada.readLine();
                 if(entradaUsr.toLowerCase().compareTo("adios") == 0){
                     System.out.println("Ok, hasta luego");
                     break;
@@ -45,8 +45,7 @@ public class Servidor {
 
                 }
             }
-
-            // Cerramos la conexión y el servidor.
+            
             entrada.close();
             salida.close();
             cliente.close();
@@ -55,6 +54,12 @@ public class Servidor {
 
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
+        }catch(NullPointerException e){
+            if(entradaUsr == null){
+                System.out.println("El usuario se ha desconectado");
+            }else{
+                System.out.println("Error: " + e.getMessage());
+            }
         }
     }
 }
