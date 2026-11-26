@@ -73,7 +73,7 @@ Lanzo el servidor y me conecto a él con `netcat`:
 
 Si el usuario cierra la partida de forma inesperada se recoge la excepción `NullPointerException`:
 
-[!excep](./imgs/excep.png)
+![excep](./imgs/excep.png)
 
 ## Bibliografía y Uso de IA
 
